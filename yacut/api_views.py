@@ -13,10 +13,9 @@ from settings import constants
 
 @app.route('/api/id/', methods=['POST'])
 def get_short_link():
-    if not request.is_json:
-        raise InvalidAPIUsage('Отсутствует тело запроса')
-    data = request.get_json()
-    if not data:
+    try:
+        data = request.get_json()
+    except Exception:
         raise InvalidAPIUsage('Отсутствует тело запроса')
     if 'url' not in data:
         raise InvalidAPIUsage('"url" является обязательным полем!')
