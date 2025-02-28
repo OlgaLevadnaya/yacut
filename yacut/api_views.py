@@ -7,7 +7,6 @@ from . import app, db
 from .error_handlers import InvalidAPIUsage
 from .models import URLMap
 from .utils import get_unique_short_id
-
 from settings import constants
 
 

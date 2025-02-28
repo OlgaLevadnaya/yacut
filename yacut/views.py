@@ -1,6 +1,5 @@
 from http import HTTPStatus
-from flask import abort, flash, redirect, render_template, url_for
-
+from flask import flash, redirect, render_template, url_for
 
 from . import app, db
 from .forms import URLMapForm
@@ -45,7 +44,5 @@ def index_view():
 
 @app.route('/<string:short_id>', methods=['GET'])
 def redirect_url(short_id):
-    url = URLMap.query.filter_by(short=short_id).first()
-    if url:
-        return redirect(url.original, code=HTTPStatus.FOUND.value)
-    abort(404)
+    url = URLMap.query.filter_by(short=short_id).first_or_404()
+    return redirect(url.original, code=HTTPStatus.FOUND.value)

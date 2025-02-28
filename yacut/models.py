@@ -1,7 +1,6 @@
 from datetime import datetime, timezone
 
 from . import db
-
 from settings import constants
 
 
